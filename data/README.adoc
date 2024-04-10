@@ -1,0 +1,29 @@
+# PvC DS Demo - Data Generation
+
+
+To generate data, there are two ways:
+
+1. Use the script link:gen_data.sh[gen_data.sh] to generate data. You will need to change variables at the top of the script to match your environment. 
+    
+1. Do it manually by pushing files present in link:data/[data/] and follow the readme there to push data into various services.
+
+
+## Generate Data with Datagen
+
+1. Install jq on the node where you are launching the script: __yum install jq__
+
+1. Make sure gen_data.sh is executable: __chmod +x gen_data.sh __
+
+1. In link:gen_data.sh[gen_data.sh] script change the hostname and user/password of datagen to yours
+
+1. Launch data generation with: __./gen_data.sh__
+
+
+Later, if you want to scale, you can relaunch gen_data.sh with a parameter among: small (~1 GB of data), medium (~10s GB of data), large (~100s GB of data), extra large (~1 TB of data).
+
+
+
+## Load Data using the samples
+
+
+TODO: ADD samples and procedure to load them to the cluster.

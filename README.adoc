@@ -1,0 +1,39 @@
+# Private Cloud Data Services Demo
+
+Goal of this repository is to provide checks and examples to test and demo all Data Services experiences in CDP Private Cloud.
+
+
+## Data Generation
+
+Follow the instructions here in to generate data: link:data/[data/README.adoc]
+
+
+## Features
+
+TODO: Goal is to explore features of all components of PvC:
+
+* CDE:
+
+
+* CDW:
+
+
+* CDV: 
+
+
+* CML:
+
+
+* Data Catalog:
+
+
+
+## Use Case 
+
+TODO: Goal is to make a full use case with data generated in HDFS & Kafka.
+
+CDE: Read Kafka in streaming and pushes it back to HDFS in a formatted structure (Ozone)
+CDW: Read data formatted and analyze it + create new data as business layer
+CDV: Create a vizualization on top of business layer
+CML: Read Hive tables of business layer to create a model and deploy it 
+Data Catalog: SHow what's been accessed and used 
