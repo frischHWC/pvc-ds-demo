@@ -63,7 +63,7 @@ done
 
 }
 
-if [ -z $1 ]; then
+if [ ! -z $1 ]; then
     DATA_SIZE=$1
 fi
 
