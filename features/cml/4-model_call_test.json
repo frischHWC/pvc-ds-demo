@@ -1,0 +1,12 @@
+{
+    "wind_p_9_am": "NORTH",
+    "wind_f_9am":  40,
+    "wind_p_9_pm": "SOUTH",
+    "wind_f_9_pm": 41,
+    "p_9am": 1012,
+    "p_9pm": 1020,
+    "h_9am": 15,
+    "h_9pm": 100,
+    "t_9am": 24,
+    "t_9pm": 25
+}

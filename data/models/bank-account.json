@@ -1,0 +1,112 @@
+{
+    "Fields": [
+      {
+        "name": "account_id",
+        "type": "INCREMENT_INTEGER",
+        "min": 9999999,
+        "max": 20000000
+      },
+      {
+        "name": "name",
+        "type": "NAME",
+        "filters": ["USA"]
+      },
+      {
+        "name": "birthdate",
+        "type": "BIRTHDATE",
+        "min": "1/1/1950",
+        "max": "31/12/2004"
+      },
+      {
+        "name": "city_of_residence",
+        "type": "CITY",
+        "filters": ["USA"]
+      },
+      {
+        "name": "country_of_residence",
+        "type": "LINK",
+        "conditionals": {
+          "link": "$city_of_residence.country"
+        }
+      },
+      {
+        "name": "phone_number",
+        "type": "PHONE",
+        "filters": ["USA"]
+      },
+      {
+        "name": "card_type",
+        "type": "STRING",
+        "possible_values": ["VISA", "MASTERCARD"]
+      },
+      {
+        "name": "membership",
+        "type": "STRING",
+        "possible_values_weighted": {
+          "NORMAL": 92,
+          "PREMIUM": 7,
+          "PREMIUM_PLUS": 1
+        }
+      }
+    ],
+    "Table_Names": [
+      {"HDFS_FILE_PATH": "/user/datagen/hdfs/banking/bank_account/"},
+      {"HDFS_FILE_NAME": "bank_account"},
+      {"HIVE_HDFS_FILE_PATH": "/user/datagen/hive/banking/bank_account/"},
+      {"HBASE_TABLE_NAME": "bank_account"},
+      {"HBASE_NAMESPACE": "banking"},
+      {"KAFKA_TOPIC": "banking_bank_account"},
+      {"OZONE_VOLUME": "banking"},
+      {"OZONE_BUCKET":  "bankaccount"},
+      {"OZONE_KEY_NAME":  "bank-account"},
+      {"OZONE_LOCAL_FILE_PATH":  "/home/datagen/temp/bank_account/"},
+      {"SOLR_COLLECTION": "banking_bank_account"},
+      {"HIVE_DATABASE": "banking"},
+      {"HIVE_TABLE_NAME":  "bank_account"},
+      {"HIVE_TEMPORARY_TABLE_NAME":  "bank_account_tmp"},
+      {"KUDU_TABLE_NAME":  "banking.bank_account_kudu"},
+      {"LOCAL_FILE_PATH":  "/tmp/banking/bank_account/"},
+      {"LOCAL_FILE_NAME":  "banking-bank_account"},
+      {"AVRO_NAME":  "bankingbank_account"}
+    ],
+    "Primary_Keys": [
+      {"KAFKA_MSG_KEY": "country_of_residence"},
+      {"HBASE_PRIMARY_KEY":  "account_id"},
+      {"KUDU_PRIMARY_KEYS":  "membership,account_id"},
+      {"KUDU_RANGE_KEYS":  "membership"}
+    ],
+    "Options": [
+      {"DELETE_PREVIOUS":  false},
+      {"ONE_FILE_PER_ITERATION":  true},
+      {"CSV_HEADER":  true},
+  
+      {"HBASE_COLUMN_FAMILIES_MAPPING": "c:name"},
+  
+      {"SOLR_SHARDS":  1},
+      {"SOLR_REPLICAS":  1},
+      {"SOLR_JAAS_FILE_PATH":  "/tmp/solr.jaas"},
+  
+      {"HIVE_THREAD_NUMBER":  1},
+      {"HIVE_ON_HDFS":  true},
+      {"HIVE_TEZ_QUEUE_NAME":  "root.default"},
+  
+      {"PARQUET_PAGE_SIZE":  1048576},
+      {"PARQUET_ROW_GROUP_SIZE":  134217728},
+      {"PARQUET_DICTIONARY_PAGE_SIZE":  1048576},
+      {"PARQUET_DICTIONARY_ENCODING":  true},
+  
+      {"KAFKA_MESSAGE_TYPE":  "json"},
+      {"KAFKA_JAAS_FILE_PATH":  "/tmp/kafka.jaas"},
+      {"KAFKA_ACKS_CONFIG":  "all"},
+      {"KAFKA_RETRIES_CONFIG":  3},
+  
+      {"KUDU_REPLICAS":  1},
+      {"KUDU_BUCKETS":  32},
+      {"KUDU_BUFFER":  100001},
+      {"KUDU_FLUSH":  "MANUAL_FLUSH"},
+  
+      {"OZONE_REPLICATION_FACTOR":  3},
+  
+      {"HDFS_REPLICATION_FACTOR":  3}
+    ]
+  }

@@ -3,7 +3,7 @@
       {
         "name": "city",
         "type": "CITY",
-        "filters": ["France"]
+        "filters": ["Japan"]
       },
       {
         "name": "date",

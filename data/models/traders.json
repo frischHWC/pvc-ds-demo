@@ -1,0 +1,91 @@
+{
+    "Fields": [
+      {
+        "name": "name",
+        "type": "NAME",
+        "filters": ["India"]
+      },
+      {
+        "name": "id",
+        "type": "INCREMENT_INTEGER"
+      },
+      {
+        "name": "city",
+        "type": "CITY",
+        "filters": ["India"]
+      },
+      {
+        "name": "country",
+        "type": "LINK",
+        "conditionals": {
+          "link": "$city.country"
+        }
+      },
+      {
+        "name": "email",
+        "type": "STRING",
+        "conditionals": {
+          "injection": "${name}.${id}@my_awesome_bank.com"
+        }
+      }
+    ],
+    "Table_Names": [
+      {"HDFS_FILE_PATH": "/user/datagen/hdfs/finance/traders/"},
+      {"HDFS_FILE_NAME": "traders"},
+      {"HIVE_HDFS_FILE_PATH": "/user/datagen/hive/finance/traders/"},
+      {"HBASE_TABLE_NAME": "traders"},
+      {"HBASE_NAMESPACE": "finance"},
+      {"KAFKA_TOPIC": "finance_traders"},
+      {"OZONE_VOLUME": "finance"},
+      {"OZONE_BUCKET":  "traders"},
+      {"OZONE_KEY_NAME":  "traders"},
+      {"OZONE_LOCAL_FILE_PATH":  "/home/datagen/temp/finance/traders/"},
+      {"SOLR_COLLECTION": "finance_traders"},
+      {"HIVE_DATABASE": "datagen_finance"},
+      {"HIVE_TABLE_NAME":  "traders"},
+      {"HIVE_TEMPORARY_TABLE_NAME":  "traders_tmp"},
+      {"KUDU_TABLE_NAME":  "finance.traders_kudu"},
+      {"LOCAL_FILE_PATH":  "/tmp/finance/traders/"},
+      {"LOCAL_FILE_NAME":  "finance-traders"},
+      {"AVRO_NAME":  "financetraders"}
+    ],
+    "Primary_Keys": [
+      {"KAFKA_MSG_KEY": "name"},
+      {"HBASE_PRIMARY_KEY":  "id"},
+      {"KUDU_PRIMARY_KEYS":  "id"}
+    ],
+    "Options": [
+      {"DELETE_PREVIOUS":  true},
+      {"ONE_FILE_PER_ITERATION":  true},
+      {"CSV_HEADER":  true},
+  
+      {"HBASE_COLUMN_FAMILIES_MAPPING": "c:name"},
+  
+      {"SOLR_SHARDS":  1},
+      {"SOLR_REPLICAS":  1},
+      {"SOLR_JAAS_FILE_PATH":  "/tmp/solr.jaas"},
+  
+      {"HIVE_THREAD_NUMBER":  1},
+      {"HIVE_ON_HDFS":  true},
+      {"HIVE_TEZ_QUEUE_NAME":  "root.default"},
+  
+      {"PARQUET_PAGE_SIZE":  1048576},
+      {"PARQUET_ROW_GROUP_SIZE":  134217728},
+      {"PARQUET_DICTIONARY_PAGE_SIZE":  1048576},
+      {"PARQUET_DICTIONARY_ENCODING":  true},
+  
+      {"KAFKA_MESSAGE_TYPE":  "json"},
+      {"KAFKA_JAAS_FILE_PATH":  "/tmp/kafka.jaas"},
+      {"KAFKA_ACKS_CONFIG":  "all"},
+      {"KAFKA_RETRIES_CONFIG":  3},
+  
+      {"KUDU_REPLICAS":  1},
+      {"KUDU_BUCKETS":  32},
+      {"KUDU_BUFFER":  100001},
+      {"KUDU_FLUSH":  "MANUAL_FLUSH"},
+  
+      {"OZONE_REPLICATION_FACTOR":  3},
+  
+      {"HDFS_REPLICATION_FACTOR":  3}
+    ]
+  }

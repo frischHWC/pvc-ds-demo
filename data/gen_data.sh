@@ -67,12 +67,22 @@ if [ ! -z $1 ]; then
     DATA_SIZE=$1
 fi
 
+cp resources/stock_names.csv /tmp/
+
 logger info "Data generation size is: #bold:$DATA_SIZE"
 logger info "Datagen server used is at: #underline:${DATAGEN_URL}#end_underline"
 
 case $DATA_SIZE in 
     "small")
-        generate_data hdfs-parquet models/weather-model.json 10 100000 10
+        generate_data hdfs-parquet models/weather.json 10 100000 10
+        generate_data hive models/bank-account.json 10 1000000 10
+        generate_data hive models/atm.json 10 100000 10
+        generate_data hive models/stock-price.json 1 100 1
+        generate_data hive models/stock-transaction.json 10 100000 10
+        generate_data hive models/traders.json 1 1000 1
+        generate_data hdfs-parquet models/plant.json 1 1000 1
+        generate_data hdfs-parquet models/sensor.json 10 10000 10
+        generate_data hdfs-parquet models/sensor-data.json 10 100000 10
     ;;
     "medium")
         generate_data hdfs-parquet models/weather-model.json 10 100000 10

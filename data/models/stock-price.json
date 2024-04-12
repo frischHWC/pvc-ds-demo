@@ -1,0 +1,135 @@
+{
+    "Fields": [
+      {
+        "name": "symbol",
+        "type": "CSV",
+        "file": "/tmp/stock_names.csv",
+        "field": "Symbol",
+        "separator": ";"
+      },
+      {
+        "name": "stock_full_name",
+        "type": "LINK",
+        "conditionals": {
+          "link": "$symbol.Name"
+        }
+      },
+      {
+        "name": "stock_sector",
+        "type": "LINK",
+        "conditionals": {
+          "link": "$symbol.Sector"
+        }
+      },
+      {
+        "name": "volume",
+        "type": "INTEGER",
+        "min": 10000000,
+        "max": 250000000
+      },
+      {
+        "name": "volume_owned_by_concurrents",
+        "type": "INTEGER",
+        "conditionals": {
+          "$volume<25000000 & $base_value<70" : "9034050",
+          "$volume<25000000 & $base_value<150" : "9324000",
+          "$volume<25000000 & $base_value<210" : "8145000",
+          "$volume<25000000" : "7000670",
+  
+          "$volume<100000000 & $base_value<70" : "74056300",
+          "$volume<100000000 & $base_value<140" : "72056000",
+          "$volume<100000000 & $base_value<220" : "67056900",
+          "$volume<100000000" : "50056000",
+  
+          "$volume<150000000 & $base_value<75" : "112003900",
+          "$volume<150000000 & $base_value<154" : "104580000",
+          "$volume<150000000 & $base_value<203" : "99567892",
+          "$volume<150000000" : "95045000",
+  
+          "$volume<200000000 & $base_value<73" : "156006450",
+          "$volume<200000000 & $base_value<176" : "138003450",
+          "$volume<200000000 & $base_value<216" : "134003402",
+          "$volume<200000000" : "122003400",
+  
+          "$volume<250000001 & $base_value<77" : "211045000",
+          "$volume<250000001 & $base_value<155" : "207030090",
+          "$volume<250000001 & $base_value<211" : "201000456",
+          "$volume<250000001" : "200006780",
+  
+          "default" : "100000000"
+        }
+      },
+      {
+        "name": "base_value",
+        "type": "INTEGER",
+        "min": 50,
+        "max": 250
+      },
+      {
+        "name": "volume_owned",
+        "type": "INTEGER",
+        "conditionals": {
+          "formula": "$volume - $volume_owned_by_concurrents - $base_value * 10"
+        }
+      }
+    ],
+    "Table_Names": [
+      {"HDFS_FILE_PATH": "/user/datagen/hdfs/finance/stock_price/"},
+      {"HDFS_FILE_NAME": "stock_price"},
+      {"HIVE_HDFS_FILE_PATH": "/user/datagen/hive/finance/stock_price/"},
+      {"HBASE_TABLE_NAME": "stock_price"},
+      {"HBASE_NAMESPACE": "finance"},
+      {"KAFKA_TOPIC": "finance_stock_price"},
+      {"OZONE_VOLUME": "finance"},
+      {"OZONE_BUCKET":  "stock_price"},
+      {"OZONE_KEY_NAME":  "stock_price"},
+      {"OZONE_LOCAL_FILE_PATH":  "/home/datagen/temp/finance/stock_price/"},
+      {"SOLR_COLLECTION": "finance_stock_price"},
+      {"HIVE_DATABASE": "datagen_finance"},
+      {"HIVE_TABLE_NAME":  "stock_price"},
+      {"HIVE_TEMPORARY_TABLE_NAME":  "stock_price_tmp"},
+      {"KUDU_TABLE_NAME":  "finance.stock_price_kudu"},
+      {"LOCAL_FILE_PATH":  "/tmp/finance/stock_price/"},
+      {"LOCAL_FILE_NAME":  "finance-stock_price"},
+      {"AVRO_NAME":  "financestock_price"}
+    ],
+    "Primary_Keys": [
+      {"KAFKA_MSG_KEY": "symbol"},
+      {"HBASE_PRIMARY_KEY":  "symbol"},
+      {"KUDU_PRIMARY_KEYS":  "symbol"}
+    ],
+    "Options": [
+      {"DELETE_PREVIOUS":  true},
+      {"ONE_FILE_PER_ITERATION":  true},
+      {"CSV_HEADER":  true},
+  
+      {"HBASE_COLUMN_FAMILIES_MAPPING": "c:name"},
+  
+      {"SOLR_SHARDS":  1},
+      {"SOLR_REPLICAS":  1},
+      {"SOLR_JAAS_FILE_PATH":  "/tmp/solr.jaas"},
+  
+      {"HIVE_THREAD_NUMBER":  1},
+      {"HIVE_ON_HDFS":  true},
+      {"HIVE_TEZ_QUEUE_NAME":  "root.default"},
+  
+      {"PARQUET_PAGE_SIZE":  1048576},
+      {"PARQUET_ROW_GROUP_SIZE":  134217728},
+      {"PARQUET_DICTIONARY_PAGE_SIZE":  1048576},
+      {"PARQUET_DICTIONARY_ENCODING":  true},
+  
+      {"KAFKA_MESSAGE_TYPE":  "json"},
+      {"KAFKA_JAAS_FILE_PATH":  "/tmp/kafka.jaas"},
+      {"KAFKA_ACKS_CONFIG":  "all"},
+      {"KAFKA_RETRIES_CONFIG":  3},
+  
+      {"KUDU_REPLICAS":  1},
+      {"KUDU_BUCKETS":  32},
+      {"KUDU_BUFFER":  100001},
+      {"KUDU_FLUSH":  "MANUAL_FLUSH"},
+  
+      {"OZONE_REPLICATION_FACTOR":  3},
+  
+      {"HDFS_REPLICATION_FACTOR":  3}
+    ]
+  }
