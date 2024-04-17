@@ -61,7 +61,7 @@
       {"OZONE_KEY_NAME":  "bank-account"},
       {"OZONE_LOCAL_FILE_PATH":  "/home/datagen/temp/bank_account/"},
       {"SOLR_COLLECTION": "banking_bank_account"},
-      {"HIVE_DATABASE": "banking"},
+      {"HIVE_DATABASE": "datagen_banking"},
       {"HIVE_TABLE_NAME":  "bank_account"},
       {"HIVE_TEMPORARY_TABLE_NAME":  "bank_account_tmp"},
       {"KUDU_TABLE_NAME":  "banking.bank_account_kudu"},
